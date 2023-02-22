@@ -52,8 +52,10 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function single_idea_shows_correctly_on_the_show_page(){
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
         $idea = Idea::factory()->create([
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
             'title' => 'My first idea',
             'description' => 'Description of my first idea'
         ]);
@@ -70,9 +72,12 @@ class ShowIdeasTest extends TestCase
     public function ideas_pagination_works()
     {
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+
 
         Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
-            'category_id' => $categoryOne->id
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id
         ]);
 
         $ideaOne = Idea::find(1);
@@ -85,20 +90,20 @@ class ShowIdeasTest extends TestCase
 
         $response = $this->get('/');
 
-        $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaEleven->title);
+        $response->assertSee($ideaEleven->title);
+        $response->assertDontSee($ideaOne->title);
 
         $response = $this->get('/?page=2');
 
-        $response->assertSee($ideaEleven->title);
-        $response->assertDontSee($ideaOne->title);
+        $response->assertSee($ideaOne->title);
+        $response->assertDontSee($ideaEleven->title);
     }
 
     /** @test */
-    public function same_idea_title_diffenrent_slugs()
+    public function same_idea_title_different_slugs()
     {
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-        $status = Status::factory()->create(['name' => 'Status 1']);
+        $status = Status::factory()->create(['name' => 'Status 1', 'classes' => 'bg-gray-200']);
         $ideaOne = Idea::factory()->create([
             'category_id' => $categoryOne->id,
             'status_id' => $status->id,
