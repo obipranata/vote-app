@@ -14,6 +14,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Live wire --->
+        @livewireStyles
+
     </head>
     <body class="font-sans bg-gray-background text-gray-900 text-sm">
         <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
@@ -115,5 +119,7 @@
                 </div>
             </div>
         </main>
+
+        @livewireScripts
     </body>
 </html>
