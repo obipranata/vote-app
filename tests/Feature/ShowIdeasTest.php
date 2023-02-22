@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Idea;
 use App\Models\Category;
+use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,15 +18,23 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+        $statusInProgress = Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
+        $statusImplemented = Status::factory()->create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
+        $statusClosed = Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
+
         $ideaOne = Idea::factory()->create([
             'title' => 'My first idea',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
             'description' => 'Description of my first idea'
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'title' => 'My second idea',
             'category_id' => $categoryTwo->id,
+            'status_id' => $statusConsidering->id,
             'description' => 'Description of my second idea'
         ]);
 
@@ -34,6 +43,7 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($ideaOne->title);
         $response->assertSee($ideaOne->description);
         $response->assertSee($categoryOne->name);
+        $response->assertSee($statusConsidering->name);
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
         $response->assertSee($categoryTwo->name);
@@ -88,14 +98,17 @@ class ShowIdeasTest extends TestCase
     public function same_idea_title_diffenrent_slugs()
     {
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $status = Status::factory()->create(['name' => 'Status 1']);
         $ideaOne = Idea::factory()->create([
             'category_id' => $categoryOne->id,
+            'status_id' => $status->id,
             'title' => 'My First Idea',
             'description' => 'Description for my first idea',
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'category_id' => $categoryOne->id,
+            'status_id' => $status->id,
             'title' => 'My First Idea',
             'description' => 'Description for my first idea',
         ]);
@@ -105,9 +118,9 @@ class ShowIdeasTest extends TestCase
         $response->assertSuccessful();
         $this->assertTrue(request()->path() === 'ideas/my-first-idea');
 
-        // $response = $this->get(route('idea.show', $ideaTwo));
+        $response = $this->get(route('idea.show', $ideaTwo));
 
-        // $response->assertSuccessful();
-        // $this->assertTrue(request()->path() === 'ideas/my-first-idea-1');
+        $response->assertSuccessful();
+        $this->assertTrue(request()->path() === 'ideas/my-first-idea-2');
     }
 }
