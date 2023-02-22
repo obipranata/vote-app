@@ -27,7 +27,20 @@
 
   <div class="ideas-container space-y-6 my-6">
     @foreach ($ideas as $idea)
-      <div class="idea-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
+      <div 
+        x-data
+        @click = "
+          clicked = $event.target
+          target = clicked.tagName.toLowerCase()
+          console.log(target)
+          ignores = ['button', 'svg', 'path', 'a', 'img']
+
+          if(! ignores.includes(target)){
+            clicked.closest('.idea-container').querySelector('.idea-link').click()
+          }
+        "
+        class="idea-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer"
+      >
         <div class="hidden md:block border-r border-gray-100 px-5 py-8">
           <div class="text-center">
             <div class="font-semibold text-2xl">12</div>
@@ -42,12 +55,12 @@
         <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
           <div class="flex-none mx-2 md:mx-0">
             <a href="#">
-              <img src="https://source.unsplash.com/200x200/?face&crop=face&v={{$idea->user->id}}" alt="avatar" class="w-14 h-14 rounded-xl">
+              <img src="{{$idea->user->getAvatar()}}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
           </div>
           <div class="mx-2 md:mx-4 w-full  flex flex-col justify-between">
             <h4 class="text-xl font-semibold mt-2 md:mt-0">
-              <a href="{{route('idea.show', $idea)}}" class="hover:underline">{{$idea->title}}</a>
+              <a href="{{route('idea.show', $idea)}}" class="idea-link hover:underline">{{$idea->title}}</a>
             </h4>
             <div class="text-gray-600 mt-3 line-clamp-3">
               {{$idea->description}}
@@ -56,7 +69,7 @@
               <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
                 <div>{{$idea->created_at->diffForHumans()}}</div>
                 <div>&bull;</div>
-                <div>Category 1</div>
+                <div>{{$idea->category->name}}</div>
                 <div>&bull;</div>
                 <div class="text-gray-900">3 Comments</div>
               </div>
