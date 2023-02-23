@@ -33,6 +33,11 @@ class Idea extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'votes');
+    }
+
     public function getStatusClasses(){
 
         // $allStatuses = [
@@ -43,6 +48,6 @@ class Idea extends Model
         //     'Closed' => 'bg-red text-white',
         // ];
 
-        return $allStatuses[$this->status->name];
+        // return $allStatuses[$this->status->name];
     }
 }

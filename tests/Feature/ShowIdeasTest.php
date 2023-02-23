@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use App\Models\Idea;
 use App\Models\Category;
 use App\Models\Status;
@@ -25,6 +26,7 @@ class ShowIdeasTest extends TestCase
         $statusClosed = Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
 
         $ideaOne = Idea::factory()->create([
+            'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
             'title' => 'My first idea',
             'category_id' => $categoryOne->id,
             'status_id' => $statusOpen->id,
@@ -32,6 +34,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $ideaTwo = Idea::factory()->create([
+            'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito1@gmail.com'])->id,
             'title' => 'My second idea',
             'category_id' => $categoryTwo->id,
             'status_id' => $statusConsidering->id,
@@ -54,6 +57,7 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
         $idea = Idea::factory()->create([
+            'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
             'category_id' => $categoryOne->id,
             'status_id' => $statusOpen->id,
             'title' => 'My first idea',
@@ -76,6 +80,7 @@ class ShowIdeasTest extends TestCase
 
 
         Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+            'user_id' => User::factory()->create(['name' => 'obito', 'email' => 'obito@gmail.com'])->id,
             'category_id' => $categoryOne->id,
             'status_id' => $statusOpen->id
         ]);
@@ -105,6 +110,7 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $status = Status::factory()->create(['name' => 'Status 1', 'classes' => 'bg-gray-200']);
         $ideaOne = Idea::factory()->create([
+            'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
             'category_id' => $categoryOne->id,
             'status_id' => $status->id,
             'title' => 'My First Idea',
@@ -112,6 +118,7 @@ class ShowIdeasTest extends TestCase
         ]);
 
         $ideaTwo = Idea::factory()->create([
+            'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito1@gmail.com'])->id,
             'category_id' => $categoryOne->id,
             'status_id' => $status->id,
             'title' => 'My First Idea',
