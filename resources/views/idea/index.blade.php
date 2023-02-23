@@ -27,7 +27,7 @@
 
   <div class="ideas-container space-y-6 my-6">
     @foreach ($ideas as $idea)
-      <livewire:idea-index :idea="$idea" />
+      <livewire:idea-index :idea="$idea" :votesCount="$idea->votes_count" />
     @endforeach
   </div>
   <div class="my-8">{{$ideas->links()}}</div>

@@ -14,7 +14,7 @@ class="idea-container hover:shadow-card transition duration-150 ease-in bg-white
 >
 <div class="hidden md:block border-r border-gray-100 px-5 py-8">
   <div class="text-center">
-    <div class="font-semibold text-2xl">{{$idea->votes_count}}</div>
+    <div class="font-semibold text-2xl">{{$votesCount}}</div>
     <div class="text-gray-500">Votes</div>
   </div>
   <div class="mt-8">
@@ -73,7 +73,7 @@ class="idea-container hover:shadow-card transition duration-150 ease-in bg-white
 
       <div class="flex items-center md:hidden mt-4 md:mt-0">
         <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
-          <div class="text-sm font-bold leading-none">{{$idea->votes_count}}</div>
+          <div class="text-sm font-bold leading-none">{{$votesCount}}</div>
           <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
         </div>
         <button 
