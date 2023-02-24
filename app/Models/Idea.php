@@ -38,6 +38,7 @@ class Idea extends Model
     public function votes()
     {
         return $this->belongsToMany(User::class, 'votes');
+        // return $this->morphToMany(User::class, 'votable');
     }
 
     public function isVotedByUser(?User $user){
@@ -53,6 +54,8 @@ class Idea extends Model
         if($this->isVotedByUser($user)){
             throw new DuplicateVoteException;
         }
+
+        $this->votes_count++;
         Vote::create([
             'idea_id' => $this->id,
             'user_id' => $user->id
@@ -66,6 +69,7 @@ class Idea extends Model
 
         if($voteToDelete){
             $voteToDelete->delete();
+            $this->votes_count--;
         }else{
             throw new VoteNotFoundException;
         }
