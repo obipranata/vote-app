@@ -3,7 +3,10 @@
     x-data="{isOpen:false}"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    @custom-show-edit-modal.window="isOpen = true"
+    @custom-show-edit-modal.window="
+        isOpen = true
+        $nextTick(() => $refs.title.focus())
+    "
     class="fixed z-10 inset-0 overflow-y-auto" 
     aria-labelledby="modal-title" 
     role="dialog" 
@@ -44,7 +47,7 @@
                 <p class="text-xs text-center leading-5 text-gray-500 px-6 mt-4">You have one hour to edit your idea from the time you created it.</p>
                 <form wire:submit.prevent="updateIdea" action="#" method="POST" class="space-y-4 px-4 py-6">
                     <div>
-                        <input wire:model.defer="title" type="text" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 px-4 py-2 border-none" placeholder="Your Idea">
+                        <input wire:model.defer="title" x-ref="title" type="text" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 px-4 py-2 border-none" placeholder="Your Idea">
                         @error('title')
                             <p class="text-red text-xs mt-1">{{$message}}</p>
                         @enderror
