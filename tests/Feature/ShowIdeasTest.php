@@ -55,7 +55,7 @@ class ShowIdeasTest extends TestCase
     /** @test */
     public function single_idea_shows_correctly_on_the_show_page(){
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
         $idea = Idea::factory()->create([
             'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
             'category_id' => $categoryOne->id,
@@ -70,6 +70,7 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($idea->title);
         $response->assertSee($idea->description);
         $response->assertSee($categoryOne->name);
+        $response->assertSee('Open');
     }
 
     /** @test */

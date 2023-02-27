@@ -9,6 +9,8 @@
   </div>
 
   <livewire:idea-show :idea="$idea" :votesCount="$votesCount"/>
+  <livewire:edit-idea/>
+  
 
   <div class="comments-container relative space-y-6 md:ml-22 my-8 mt-1 pt-4">
     <div class="comment-container relative bg-white rounded-xl flex mt-4">
@@ -29,8 +31,10 @@
               <div>10 hours ago</div>
             </div>
             <div class="flex items-center space-x-2">
-              <button @click="isOpen = !isOpen" class="relative bg-gray-100 hover:bg-gray-200 border transition duration-150 ease-in rounded-full h-7 py-1 px-3">
-                <img src="/img/dots.svg">
+              <div class="relative">
+                <button @click="isOpen = !isOpen" class="relative bg-gray-100 hover:bg-gray-200 border transition duration-150 ease-in rounded-full h-7 py-1 px-3">
+                  <img src="/img/dots.svg">
+                </button>
                 <ul 
                 x-cloak
                   x-show.transition.origin.top.left="isOpen" 
@@ -49,95 +53,12 @@
                     </a>
                   </li>
                 </ul>
-              </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    {{-- comment container --}}
-    <div class="is-admin comment-container relative bg-white rounded-xl flex mt-4">
-      <div class="flex flex-1 px-4 py-6">
-        <div class="flex-none">
-          <a href="#">
-            <img src="https://source.unsplash.com/200x200/?face&crop=face&v=3" alt="avatar" class="w-14 h-14 rounded-xl">
-          </a>
-          <div class="text-center uppercase text-blue text-xxs font-bold mt-1">Admin</div>
-        </div>
-        <div class="mx-4 w-full">
-          <h4 class="text-xl font-semibold">
-            <a href="#" class="hover:underline">Status Changed to "Under Consideration "</a>
-          </h4>
-          <div class="text-gray-600 line-clamp-3">
-            Lorem ipsum dolor sit amet consectetur.
-          </div>
-          <div class="flex items-center justify-between mt-6">
-            <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-              <div class="font-bold text-blue">Andrea</div>
-              <div>&bull;</div>
-              <div>10 hours ago</div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button class="relative bg-gray-100 hover:bg-gray-200 border transition duration-150 ease-in rounded-full h-7 py-1 px-3">
-                <img src="/img/dots.svg">
-                <ul class="hidden absolute w-64 font-semibold text-left bg-white shadow-dialog rounded-xl py-3 ml-8">
-                  <li>
-                    <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                      Mark as Spam 
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                      Delete Post 
-                    </a>
-                  </li>
-                </ul>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{-- comment container --}}
-    <div class="comment-container relative bg-white rounded-xl flex mt-4">
-      <div class="flex flex-1 px-4 py-6">
-        <div class="flex-none">
-          <a href="#">
-            <img src="https://source.unsplash.com/200x200/?face&crop=face&v=4" alt="avatar" class="w-14 h-14 rounded-xl">
-          </a>
-        </div>
-        <div class="mx-4 w-full">
-          <div class="text-gray-600 line-clamp-3">
-            Lorem ipsum dolor sit amet consectetur.
-          </div>
-          <div class="flex items-center justify-between mt-6">
-            <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-              <div class="font-bold text-gray-900">Jhon Doe</div>
-              <div>&bull;</div>
-              <div>10 hours ago</div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button class="relative bg-gray-100 hover:bg-gray-200 border transition duration-150 ease-in rounded-full h-7 py-1 px-3">
-                <img src="/img/dots.svg">
-                <ul class="hidden absolute w-64 font-semibold text-left bg-white shadow-dialog rounded-xl py-3 ml-8">
-                  <li>
-                    <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                      Mark as Spam 
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                      Delete Post 
-                    </a>
-                  </li>
-                </ul>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{-- comment container --}}
   </div>
   {{-- end comments container --}}
 </x-app-layout>

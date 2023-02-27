@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Idea;
+use App\Models\Vote;
 
 class CreateIdea extends Component
 {
@@ -19,9 +20,13 @@ class CreateIdea extends Component
     ];
 
     public function createIdea(){
-        if(auth()->check()){
+
+        if(auth()->guest()){
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
             $this->validate();
-            Idea::create([
+            $idea = Idea::create([
                 'user_id' => auth()->id(),
                 'category_id' => $this->category,
                 'status_id' => 1,
@@ -29,15 +34,17 @@ class CreateIdea extends Component
                 'description' => $this->description,
             ]);
 
+            $idea->vote(auth()->user());
+            // Vote::create([
+            //     'idea_id' => $idea->id,
+            //     'user_id' => auth()->user()->id
+            // ]);
+
             session()->flash('success_message', 'Idea was added successfully.');
 
             $this->reset();
 
             return redirect()->route('idea.index');
-        }
-
-
-        abort(Response::HTTP_FORBIDDEN);
     }
 
     public function render()
