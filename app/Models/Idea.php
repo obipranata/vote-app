@@ -41,6 +41,10 @@ class Idea extends Model
         // return $this->morphToMany(User::class, 'votable');
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     public function isVotedByUser(?User $user){
         if(!$user){
             return false;

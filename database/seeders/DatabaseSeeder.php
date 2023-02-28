@@ -9,6 +9,7 @@ use App\Models\Idea;
 use App\Models\Category;
 use App\Models\Status;
 use App\Models\Vote;
+use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -61,6 +62,11 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
             }
+        }
+
+        // Generates comments for ideas
+        foreach(Idea::all() as $idea){
+            Comment::factory(5)->existing()->create(['idea_id' => $idea->id]);
         }
     }
 }
