@@ -8,9 +8,11 @@ use App\Models\Comment;
 class IdeaComment extends Component
 {
     public $comment;
+    public $ideaUserId;
 
-    public function mount(Comment $comment){
+    public function mount(Comment $comment, $ideaUserId){
         $this->comment = $comment;
+        $this->ideaUserId = $ideaUserId;
     }
 
     public function render()
