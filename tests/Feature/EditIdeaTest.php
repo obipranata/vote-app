@@ -145,7 +145,8 @@ class EditIdeaTest extends TestCase
             \Livewire::actingAs($user)
                 ->test(IdeaShow::class, [
                     'idea' => $idea,
-                    'votesCount' => 4
+                    'votesCount' => 4,
+                    'commentsCount' => 5
                 ])
                 ->assertSee('Edit Idea');
         }
@@ -160,7 +161,8 @@ class EditIdeaTest extends TestCase
             \Livewire::actingAs($user)
                 ->test(IdeaShow::class, [
                     'idea' => $idea,
-                    'votesCount' => 4
+                    'votesCount' => 4,
+                    'commentsCount' => 5
                 ])
                 ->assertDontSee('Edit Idea');
         }

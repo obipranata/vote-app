@@ -78,6 +78,7 @@ class SpamManagementTest extends TestCase
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
+                'commentsCount' => 5
             ])
             ->assertSee('Mark as Spam');
     }
@@ -90,6 +91,7 @@ class SpamManagementTest extends TestCase
         \Livewire::test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
+                'commentsCount' => 5
             ])
             ->assertDontSee('Mark as Spam');
     }
@@ -156,6 +158,7 @@ class SpamManagementTest extends TestCase
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
+                'commentsCount' => 5
             ])
             ->assertSee('Not Spam');
     }
@@ -168,6 +171,7 @@ class SpamManagementTest extends TestCase
         \Livewire::test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
+                'commentsCount' => 5
             ])
             ->assertDontSee('Not Spam');
     }
@@ -184,6 +188,7 @@ class SpamManagementTest extends TestCase
             ->test(IdeaIndex::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
+                'commentsCount' => 5
             ])
             ->assertSee('Spam Reports: 3');
     }
@@ -200,6 +205,7 @@ class SpamManagementTest extends TestCase
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
+                'commentsCount' => 5
             ])
             ->assertSee('Spam Reports: 3');
     }

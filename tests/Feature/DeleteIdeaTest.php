@@ -138,7 +138,8 @@ class DeleteIdeaTest extends TestCase
             \Livewire::actingAs($user)
                 ->test(IdeaShow::class, [
                     'idea' => $idea,
-                    'votesCount' => 4
+                    'votesCount' => 4,
+                    'commentsCount' => 5
                 ])
                 ->assertSee('Delete Idea');
         }
@@ -153,7 +154,8 @@ class DeleteIdeaTest extends TestCase
             \Livewire::actingAs($user)
                 ->test(IdeaShow::class, [
                     'idea' => $idea,
-                    'votesCount' => 4
+                    'votesCount' => 4,
+                    'commentsCount' => 5
                 ])
                 ->assertDontSee('Delete Idea');
         }

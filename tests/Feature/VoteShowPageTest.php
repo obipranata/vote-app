@@ -92,7 +92,8 @@ class VoteShowPageTest extends TestCase
 
         \Livewire::test(IdeaShow::class, [
             'idea' => $idea,
-            'votesCount' => 0
+            'votesCount' => 0,
+            'commentsCount' => 5
         ])
         ->assertSet('votesCount', 0);
     }
@@ -115,7 +116,8 @@ class VoteShowPageTest extends TestCase
 
         \Livewire::test(IdeaShow::class, [
             'idea' => $idea,
-            'votesCount' => 5
+            'votesCount' => 5,
+            'commentsCount' => 5
         ])
         ->call('vote', true)
         ->assertRedirect(route('login'));
@@ -140,7 +142,8 @@ class VoteShowPageTest extends TestCase
         \Livewire::actingAs($user)
             ->test(IdeaShow::class, [
             'idea' => $idea,
-            'votesCount' => 5
+            'votesCount' => 5,
+            'commentsCount' => 5
         ])
         ->call('vote', true)
         ->assertSet('votesCount', 6)
