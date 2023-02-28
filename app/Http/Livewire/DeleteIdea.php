@@ -16,9 +16,7 @@ class DeleteIdea extends Component
     }
 
     public function deleteIdea(){
-        // Auth
-
-                // Authorization
+        // Authorization
         if (auth()->guest() || auth()->user()->cannot('delete', $this->idea)){
             abort(Response::HTTP_FORBIDDEN);
         }

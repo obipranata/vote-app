@@ -15,8 +15,10 @@
   @can('delete', $idea)
     <livewire:delete-idea :idea="$idea"/>
   @endcan
-
-  
+  @auth
+    <livewire:mark-idea-as-spam :idea="$idea"/>
+    <livewire:mark-idea-as-not-spam :idea="$idea"/>
+  @endauth
 
   <div class="comments-container relative space-y-6 md:ml-22 my-8 mt-1 pt-4">
     <div class="comment-container relative bg-white rounded-xl flex mt-4">
