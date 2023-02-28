@@ -13,7 +13,6 @@ use App\Models\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
-use Livewire\Livewire;
 use Tests\TestCase;
 
 class SpamManagementTest extends TestCase
@@ -47,7 +46,7 @@ class SpamManagementTest extends TestCase
         $user = User::factory()->create();
         $idea = Idea::factory()->create();
 
-        Livewire::actingAs($user)
+        \Livewire::actingAs($user)
             ->test(MarkIdeaAsSpam::class, [
                 'idea' => $idea,
             ])
@@ -62,7 +61,7 @@ class SpamManagementTest extends TestCase
     {
         $idea = Idea::factory()->create();
 
-        Livewire::test(MarkIdeaAsSpam::class, [
+        \Livewire::test(MarkIdeaAsSpam::class, [
                 'idea' => $idea,
             ])
             ->call('markAsSpam')
@@ -75,7 +74,7 @@ class SpamManagementTest extends TestCase
         $user = User::factory()->create();
         $idea = Idea::factory()->create();
 
-        Livewire::actingAs($user)
+        \Livewire::actingAs($user)
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
@@ -88,7 +87,7 @@ class SpamManagementTest extends TestCase
     {
         $idea = Idea::factory()->create();
 
-        Livewire::test(IdeaShow::class, [
+        \Livewire::test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
             ])
@@ -123,7 +122,7 @@ class SpamManagementTest extends TestCase
             'spam_reports' => 4,
         ]);
 
-        Livewire::actingAs($user)
+        \Livewire::actingAs($user)
             ->test(MarkIdeaAsNotSpam::class, [
                 'idea' => $idea,
             ])
@@ -138,7 +137,7 @@ class SpamManagementTest extends TestCase
     {
         $idea = Idea::factory()->create();
 
-        Livewire::test(MarkIdeaAsNotSpam::class, [
+        \Livewire::test(MarkIdeaAsNotSpam::class, [
                 'idea' => $idea,
             ])
             ->call('markAsNotSpam')
@@ -153,7 +152,7 @@ class SpamManagementTest extends TestCase
             'spam_reports' => 1,
         ]);
 
-        Livewire::actingAs($user)
+        \Livewire::actingAs($user)
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
@@ -166,7 +165,7 @@ class SpamManagementTest extends TestCase
     {
         $idea = Idea::factory()->create();
 
-        Livewire::test(IdeaShow::class, [
+        \Livewire::test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
             ])
@@ -181,7 +180,7 @@ class SpamManagementTest extends TestCase
             'spam_reports' => 3,
         ]);
 
-        Livewire::actingAs($user)
+        \Livewire::actingAs($user)
             ->test(IdeaIndex::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
@@ -197,7 +196,7 @@ class SpamManagementTest extends TestCase
             'spam_reports' => 3,
         ]);
 
-        Livewire::actingAs($user)
+        \Livewire::actingAs($user)
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 4,
