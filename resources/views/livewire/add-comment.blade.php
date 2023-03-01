@@ -19,8 +19,10 @@
                 const lastComment = document.querySelector('.comment-container:last-child')
                 lastComment.scrollIntoView({ behavior: 'smooth'})
                 lastComment.classList.add('bg-green-50')
+                lastComment.classList.remove('bg-white')
                 setTimeout(() => {
                     lastComment.classList.remove('bg-green-50')
+                    lastComment.classList.add('bg-white')
                 }, 5000)
             }
         })
@@ -29,8 +31,10 @@
             const commentToScrollTo = document.querySelector('#comment-{{ session('scrollToComment') }}')
             commentToScrollTo.scrollIntoView({ behavior: 'smooth'})
             commentToScrollTo.classList.add('bg-green-50')
+            commentToScrollTo.classList.remove('bg-white')
             setTimeout(() => {
                 commentToScrollTo.classList.remove('bg-green-50')
+                commentToScrollTo.classList.add('bg-white')
             }, 5000)
         @endif
     "

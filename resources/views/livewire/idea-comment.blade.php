@@ -28,7 +28,7 @@
         </div>
         <div class="flex items-center justify-between mt-6">
             <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-            <div class="font-bold @if($comment->is_status_update) text-blue @else text-gray-900 @endif">{{$comment->user->name}}</div>
+            <div class="font-bold @if($comment->is_status_update) text-blue  @endif">{{$comment->user->name}}</div>
             <div>&bull;</div>
             @if ($comment->user->id === $ideaUserId)
                 <div class="rounded-full border bg-gray-100 px-3 py-1">OP</div>
