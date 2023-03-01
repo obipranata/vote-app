@@ -11,7 +11,7 @@
         @endif
         </div>
         <div x-data="{isOpen : false}" class="md:mx-4 w-full">
-        <div class="text-gray-600 line-clamp-3">
+        <div class="text-gray-600">
             @admin 
                 @if ($comment->spam_reports > 0)
                     <div class="text-red mb-2">Spam Reports: {{$comment->spam_reports}}</div>
@@ -23,7 +23,7 @@
                 </h4>
             @endif
             <div>
-                {{$comment->body}}
+                {!! nl2br(e($comment->body)) !!}
             </div>
         </div>
         <div class="flex items-center justify-between mt-6">

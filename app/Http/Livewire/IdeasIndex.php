@@ -10,10 +10,11 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class IdeasIndex extends Component
 {
-    use WithPagination;
+    use WithPagination, WithAuthRedirects;
 
     public $status;
     public $category;
@@ -51,8 +52,8 @@ class IdeasIndex extends Component
 
     public function updatedFilter(){
         if($this->filter === 'My Ideas'){
-            if (! auth()->check()){
-                return redirect()->route('login');
+            if (auth()->guest()){
+                return $this->redirectToLogin();
             }
         }
     }

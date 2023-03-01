@@ -6,9 +6,11 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Vote;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class CreateIdea extends Component
 {
+    use WithAuthRedirects;
     public $title;
     public $category = 1;
     public $description;

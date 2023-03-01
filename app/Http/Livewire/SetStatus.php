@@ -24,6 +24,12 @@ class SetStatus extends Component
         if(! auth()->check() || ! auth()->user()->isAdmin()){
             abort(Response::HTTP_FORBIDDEN);
         }
+
+        if($this->idea->status_id === (int) $this->status){
+            $this->emit('statusWasUpdatedError', $this->status, 'Status is the same!');
+            return;
+        }
+
         $this->idea->status_id = $this->status;
         $this->idea->save();
 

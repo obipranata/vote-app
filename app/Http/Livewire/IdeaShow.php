@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class IdeaShow extends Component
 {
+    use WithAuthRedirects;
+
     public $idea;
     public $votesCount;
     public $commentsCount;
@@ -15,6 +18,7 @@ class IdeaShow extends Component
 
     protected $listeners = [
         'statusWasUpdated', 
+        'statusWasUpdatedError', 
         'ideaWasUpdated', 
         'ideaWasMarkedAsSpam', 
         'ideaWasMarkedAsNotSpam',
@@ -29,8 +33,12 @@ class IdeaShow extends Component
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
 
-    public function statusWasUpdated($newStatus){
+    public function statusWasUpdated(){
         // $this->idea->status_id = $newStatus;
+        $this->idea->refresh();
+    }
+
+    public function statusWasUpdatedError(){
         $this->idea->refresh();
     }
 
@@ -54,8 +62,8 @@ class IdeaShow extends Component
     }
 
     public function vote(){
-        if(! auth()->check()){
-            return redirect(route('login'));
+        if(auth()->guest()){
+            return $this->redirectToLogin();
         }
 
         if($this->hasVoted){

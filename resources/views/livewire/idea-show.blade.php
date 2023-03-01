@@ -16,7 +16,7 @@
                         <div class="text-red mb-2">Spam Reports: {{$idea->spam_reports}}</div>
                     @endif
                 @endadmin
-                {{$idea->description}}
+                {!! nl2br(e($idea->description)) !!}
             </div>
             <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                 <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">

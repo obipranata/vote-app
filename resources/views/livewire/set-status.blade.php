@@ -5,6 +5,9 @@
         Livewire.on('statusWasUpdated', () => {
             isOpen = false;
         })
+        Livewire.on('statusWasUpdatedError', () => {
+            isOpen = false;
+        })
     "
 >
     <button 

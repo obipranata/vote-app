@@ -7,9 +7,11 @@ use App\Models\Idea;
 use App\Models\Comment;
 use Illuminate\Http\Response;
 use App\Notifications\CommentAdded;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class AddComment extends Component
 {
+    use WithAuthRedirects;
     public $idea;
     public $comment;
     protected $rules = [

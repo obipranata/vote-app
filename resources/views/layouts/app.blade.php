@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Obito Voting App</title>
+        <title>{{ $title ?? 'Obito Voting App'}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,9 +47,11 @@
                         @endauth
                     </div>
                 @endif
-                <a href="#">
-                    <img src="https://i.pravatar.cc/60?u=5" alt="avatar" class="w-10 h-10 rounded-full">
-                </a>
+                @auth
+                    <a href="#">
+                        <img src="{{ auth()->user()->getAvatar() }}" alt="avatar" class="w-10 h-10 rounded-full">
+                    </a>
+                @endauth
             </div>
         </header>
 
@@ -77,25 +79,7 @@
                         </p>
                     </div>
 
-                    @auth
-                        {{-- @livewire('create-idea') --}}
                         <livewire:create-idea />
-                    @else
-                        <div class="my-6 text-center">
-                            <a 
-                                href="{{route('login')}}"
-                                class="inline-block justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
-                            >
-                                Login
-                            </a>
-                            <a 
-                                href="{{route('register')}}"
-                                class="inline-block justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3 mt-4"
-                            >
-                                Sign Up
-                            </a>
-                        </div>
-                    @endauth
                 </div>
             </div>
             <div class="w-full px-2 md:px-0 md:w-175">
