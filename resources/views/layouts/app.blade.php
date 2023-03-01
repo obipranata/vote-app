@@ -36,54 +36,7 @@
                                         {{ __('Log Out') }}
                                     </a>
                                 </form>
-                                <div x-data="{isOpen: false}" class="relative">
-                                    <button @click="isOpen = !isOpen">
-                                        <svg class="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                        </svg>
-                                        <div class="absolute rounded-full bg-red text-white text-xxs w-6 h-6 flex justify-center items-center border-2 -top-1 -rigth-1">
-                                            8
-                                        </div>
-                                    </button>
-                                    <ul 
-                                        x-cloak
-                                        x-show.transition.origin.top="isOpen" 
-                                        @click.away="isOpen=false" 
-                                        @keydown.escape.window="isOpen = false"
-                                        class="absolute w-76 md:w-96 text-left bg-white text-gray-700 text-sm shadow-dialog rounded-xl max-h-128 overflow-y-auto z-10 -right-28 md:-right-12"
-                                        {{-- style="right:-46px" --}}
-                                    >
-                                            <li>
-                                                <a 
-                                                    href="#" 
-                                                    @click.prevent="
-                                                        isOpen=false
-                                                        $dispatch('custom-show-edit-modal')
-                                                    "
-                                                    class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3"
-                                                >
-                                                    <img src="https://i.pravatar.cc/60?u=8" alt="avatar" class="w-10 h-10 rounded-xl">
-                                                    <div class="ml-4">
-                                                        <div class="line-clamp-6">
-                                                            <span class="font-semibold">obipranata</span>
-                                                            commented on
-                                                            <span class="font-semibold">This is my idea</span>:
-                                                            <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam laboriosam quibusdam, perspiciatis labore amet accusantium modi nihil ipsum aliquid illo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusamus obcaecati aliquid quae nulla consectetur.</span>
-                                                        </div>
-                                                        <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <div class="border-t border-gray-300 text-center">
-                                                <button
-                                                    class="w-full block font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4"
-                                                >
-                                                    Mark all as read
-                                                </button>
-                                            </div>
-                                    </ul>
-                                </div>
+                                <livewire:comment-notifications/>
                             </div>
                         @else
                             <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
@@ -95,7 +48,7 @@
                     </div>
                 @endif
                 <a href="#">
-                    <img src="https://i.pravatar.cc/60?u=4" alt="avatar" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/60?u=5" alt="avatar" class="w-10 h-10 rounded-full">
                 </a>
             </div>
         </header>

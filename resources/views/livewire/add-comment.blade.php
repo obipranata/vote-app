@@ -2,7 +2,7 @@
     x-data="{isOpen : false}" 
     x-init = "
         Livewire.on('commentWasAdded', () => {
-            isOpen = false;
+            isOpen = false
         })
         Livewire.hook('message.processed', (message, component) => {
             {{-- if(message.updateQueue[0].method === 'gotoPage' || message.updateQueue[0].method === 'nextPage' || message.updateQueue[0].method === 'previousPage'){ --}}
