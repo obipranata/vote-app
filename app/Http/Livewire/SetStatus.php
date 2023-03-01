@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Idea;
+use App\Models\Comment;
 use Illuminate\Http\Response;
 use App\Jobs\NotifyAllVoters;
 
@@ -11,6 +12,7 @@ class SetStatus extends Component
 {
     public $idea;
     public $status;
+    public $comment;
     public $notifyAllVoters;
 
     public function mount(Idea $idea){
@@ -28,6 +30,14 @@ class SetStatus extends Component
         if($this->notifyAllVoters){
             NotifyAllVoters::dispatch($this->idea);
         }
+
+        Comment::create([
+            'user_id' => auth()->user()->id,
+            'idea_id' => $this->idea->id,
+            'status_id' => $this->status,
+            'body' => $this->comment ?? 'No comment was added.',
+            'is_status_update' => true
+        ]);
 
         $this->emit('statusWasUpdated', $this->status, 'Status was updated successfully!');
     }

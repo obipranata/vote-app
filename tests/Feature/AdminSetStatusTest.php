@@ -26,7 +26,7 @@ class AdminSetStatusTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open',]);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
@@ -50,7 +50,7 @@ class AdminSetStatusTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open',]);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
@@ -74,7 +74,7 @@ class AdminSetStatusTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open',]);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
@@ -92,7 +92,7 @@ class AdminSetStatusTest extends TestCase
     }
 
     /** @test */
-    public function can_set_status_correctly(){
+    public function can_set_status_correctly_no_comment(){
         $user = User::factory()->create([
             'email' => 'obi@gmail.com'
         ]);
@@ -122,6 +122,49 @@ class AdminSetStatusTest extends TestCase
         $this->assertDatabaseHas('ideas', [
             'id' => $idea->id,
             'status_id' => $statusOpen->id,
+        ]);
+        $this->assertDatabaseHas('comments', [
+            'body' => 'No comment was added.',
+            'is_status_update' => true
+        ]);
+    }
+
+    /** @test */
+    public function can_set_status_correctly_with_comment(){
+        $user = User::factory()->create([
+            'email' => 'obi@gmail.com'
+        ]);
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusOpen = Status::factory()->create(['id'=>1,'name' => 'Open']);
+        $statusConsidering = Status::factory()->create(['id'=>3,'name' => 'Considering']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'title' => 'My First Idea',
+            'description' => 'description for my first idea',
+        ]);
+
+        \Livewire::actingAs($user)
+        ->test(SetStatus::class, [
+            'idea' => $idea,
+        ])
+        ->set('status', $statusOpen->id)
+        ->set('comment', 'This is a comment when setting a status')
+        ->call('setStatus')
+        ->assertEmitted('statusWasUpdated');
+
+        $this->assertDatabaseHas('ideas', [
+            'id' => $idea->id,
+            'status_id' => $statusOpen->id,
+        ]);
+        $this->assertDatabaseHas('comments', [
+            'body' => 'This is a comment when setting a status',
+            'is_status_update' => true
         ]);
     }
 

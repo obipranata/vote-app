@@ -19,11 +19,11 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
-        $statusInProgress = Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
-        $statusImplemented = Status::factory()->create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
-        $statusClosed = Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
+        $statusOpen = Status::factory()->create(['name' => 'Open',]);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering',]);
+        $statusInProgress = Status::factory()->create(['name' => 'In Progress', ]);
+        $statusImplemented = Status::factory()->create(['name' => 'Implemented', ]);
+        $statusClosed = Status::factory()->create(['name' => 'Closed',]);
 
         $ideaOne = Idea::factory()->create([
             'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
@@ -95,7 +95,7 @@ class ShowIdeasTest extends TestCase
     public function same_idea_title_different_slugs()
     {
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-        $status = Status::factory()->create(['name' => 'Status 1', 'classes' => 'bg-gray-200']);
+        $status = Status::factory()->create(['name' => 'Status 1',]);
         $ideaOne = Idea::factory()->create([
             'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
             'category_id' => $categoryOne->id,
@@ -128,11 +128,11 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
-        $statusInProgress = Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
-        $statusImplemented = Status::factory()->create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
-        $statusClosed = Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
+        $statusOpen = Status::factory()->create(['name' => 'Open',]);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering', ]);
+        $statusInProgress = Status::factory()->create(['name' => 'In Progress', ]);
+        $statusImplemented = Status::factory()->create(['name' => 'Implemented', ]);
+        $statusClosed = Status::factory()->create(['name' => 'Closed', ]);
 
         $ideaOne = Idea::factory()->create([
             'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
@@ -153,11 +153,11 @@ class ShowIdeasTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
-        $statusInProgress = Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
-        $statusImplemented = Status::factory()->create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
-        $statusClosed = Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
+        $statusOpen = Status::factory()->create(['name' => 'Open',]);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering', ]);
+        $statusInProgress = Status::factory()->create(['name' => 'In Progress', ]);
+        $statusImplemented = Status::factory()->create(['name' => 'Implemented', ]);
+        $statusClosed = Status::factory()->create(['name' => 'Closed',]);
 
         $ideaOne = Idea::factory()->create([
             'user_id' => User::factory()->create(['name' => 'Obito', 'email'=>'obito@gmail.com'])->id,
