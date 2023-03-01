@@ -18,7 +18,8 @@ class IdeaShow extends Component
         'ideaWasUpdated', 
         'ideaWasMarkedAsSpam', 
         'ideaWasMarkedAsNotSpam',
-        'commentWasAdded'
+        'commentWasAdded',
+        'commentWasDeleted',
     ];
 
     public function mount($idea, $votesCount, $commentsCount){
@@ -47,6 +48,9 @@ class IdeaShow extends Component
 
     public function commentWasAdded(){
         $this->commentsCount++;
+    }
+    public function commentWasDeleted(){
+        $this->commentsCount--;
     }
 
     public function vote(){

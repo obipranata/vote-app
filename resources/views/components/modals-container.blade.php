@@ -9,7 +9,9 @@
   <livewire:mark-idea-as-spam :idea="$idea"/>
   <livewire:mark-idea-as-not-spam :idea="$idea"/>
 @endauth
-
 @auth
-  <livewire:edit-comment/>
+  <livewire:edit-comment :idea="$idea"/>
+@endauth
+@auth
+    <livewire:delete-comment/>
 @endauth
