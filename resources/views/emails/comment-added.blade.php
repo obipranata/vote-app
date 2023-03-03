@@ -3,7 +3,7 @@
 
 {{$comment->user->name}} commented on your idea:
 
-**{{$comment->idea->title}}**
+{{$comment->idea->title}}
 
 Comment: {{$comment->body}}
 
