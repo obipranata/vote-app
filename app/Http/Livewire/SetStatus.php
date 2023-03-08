@@ -33,9 +33,10 @@ class SetStatus extends Component
         $this->idea->status_id = $this->status;
         $this->idea->save();
 
-        if($this->notifyAllVoters){
+        // if($this->notifyAllVoters){
             NotifyAllVoters::dispatch($this->idea);
-        }
+        // }
+
 
         Comment::create([
             'user_id' => auth()->user()->id,

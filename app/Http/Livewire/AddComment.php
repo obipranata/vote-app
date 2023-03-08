@@ -8,6 +8,7 @@ use App\Models\Comment;
 use Illuminate\Http\Response;
 use App\Notifications\CommentAdded;
 use App\Http\Livewire\Traits\WithAuthRedirects;
+use App\Jobs\CommentAddedProcess;
 
 class AddComment extends Component
 {
@@ -40,6 +41,7 @@ class AddComment extends Component
 
         $this->reset('comment'); 
         
+        CommentAddedProcess::dispatch($this->idea->user->email, $newComment);
         $this->idea->user->notify(new CommentAdded($newComment));
         $this->emit('commentWasAdded', 'Comment was posted!');
 
